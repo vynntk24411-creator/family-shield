@@ -1,0 +1,718 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Family Shield – UI Mockups</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>:root{
+--brand:#eb2f96;
+--brand-strong:#c4177a;
+--brand-tint:#fde8f3;
+--brand-line:#f8acc8;
+--header-top:#fbcee2;
+--header-bottom:#f7dfec;
+--surface-bg:#f2f1f7;
+--surface-card:#ffffff;
+--surface-sunken:#f5f5f8;
+--ink:#303030;
+--ink-muted:#666666;
+--line:#e6e6ec;
+--line-strong:#8c8c96;
+--on-brand:#ffffff;
+--promo:#f85420;
+--promo-strong:#c43a00;
+--promo-tint:#ffeee7;
+--danger:#d0103a;
+--danger-tint:#fff1f1;
+--danger-line:#f7b6bf;
+--success:#1a7f37;
+--success-tint:#e9f8e1;
+--success-dot:#00c853;
+--info:#0062cc;
+--info-tint:#eaf3fe;
+--info-line:#4a90f0;
+--warning:#8a5a00;
+--warning-tint:#fff4d6;
+--teal-tint:#e5f7f7;
+--scrim:rgba(48, 48, 48, 0.48);
+--space-1:4px;
+--space-2:8px;
+--space-3:12px;
+--space-4:16px;
+--space-5:20px;
+--space-6:28px;
+--space-7:48px;
+--radius-sm:8px;
+--radius-md:12px;
+--radius-lg:16px;
+--radius-pill:999px;
+--shadow-card:0 1px 3px rgba(48, 48, 48, 0.06);
+--shadow-bar:0 -1px 0 #e6e6ec;
+--focus-ring:0 0 0 3px #ffffff, 0 0 0 6px #c4177a;
+--tap-min:56px;
+--tap-sm:48px;
+--screen-mobile:390px;
+--font-sans:"SF Pro Text", -apple-system, BlinkMacSystemFont, Inter, "Segoe UI", Roboto, sans-serif;}
+
+/* Family Shield – MoMo-style components. Every value reads a token from tokens.css. */
+.fs, .fs * { box-sizing: border-box; }
+.fs { font-family: var(--font-sans); color: var(--ink); -webkit-font-smoothing: antialiased; }
+.fs svg.ic { width: 24px; height: 24px; flex: none; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.fs svg.ic.sm { width: 18px; height: 18px; }
+.fs svg.ic.lg { width: 30px; height: 30px; }
+
+/* Button – filled pink / pink outline, like “Nạp tiền” + “Liên hệ CSKH” */
+.fs-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: var(--tap-min); padding: 0 var(--space-5); border-radius: var(--radius-md); border: 2px solid transparent; font: 700 19px/24px var(--font-sans); cursor: pointer; text-decoration: none; }
+.fs-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.fs-btn--block { width: 100%; }
+.fs-btn--primary { background: var(--brand); color: var(--on-brand); }
+.fs-btn--primary:hover { background: var(--brand-strong); }
+.fs-btn--secondary { background: var(--surface-card); color: var(--brand-strong); border-color: var(--brand); }
+.fs-btn--family { background: var(--surface-card); color: var(--info); border-color: var(--info); }
+.fs-btn--danger { background: var(--surface-card); color: var(--danger); border-color: var(--danger); }
+.fs-btn--ghost { background: transparent; color: var(--brand-strong); min-height: var(--tap-sm); padding: 0 var(--space-3); font-size: 17px; }
+.fs-btn[disabled] { background: #e9e9ee; color: var(--ink-muted); border-color: #e9e9ee; cursor: not-allowed; }
+
+/* Entry tile – white card like service rows */
+.fs-tile { display: flex; gap: var(--space-4); align-items: center; width: 100%; min-height: 96px; padding: var(--space-4); border-radius: var(--radius-lg); background: var(--surface-card); box-shadow: var(--shadow-card); text-align: left; color: var(--ink); text-decoration: none; }
+.fs-tile__icon { width: 56px; height: 56px; border-radius: var(--radius-lg); display: grid; place-items: center; flex: none; }
+.fs-tile__title { font: 700 19px/26px var(--font-sans); margin: 0 0 2px; }
+.fs-tile__desc { font: 400 16px/22px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.fs-tile__chev { margin-left: auto; color: var(--ink-muted); }
+.fs-tile--urgent { border: 2px solid var(--brand); }
+.tone-primary { background: var(--brand-tint); color: var(--brand-strong); }
+.tone-family { background: var(--info-tint); color: var(--info); }
+.tone-danger { background: var(--danger-tint); color: var(--danger); }
+.tone-warning { background: var(--promo-tint); color: var(--promo-strong); }
+.tone-info { background: var(--info-tint); color: var(--info); }
+.tone-success { background: var(--success-tint); color: var(--success); }
+.tone-unknown { background: #f0f0f4; color: var(--ink-muted); }
+.tone-amber { background: var(--warning-tint); color: var(--warning); }
+
+/* Status pill – like “Thất bại”, “Thành công”, “Đang tạm dừng” */
+.fs-badge { display: inline-flex; align-items: center; gap: var(--space-1); padding: 6px 14px; border-radius: var(--radius-pill); font: 600 15px/20px var(--font-sans); white-space: nowrap; }
+
+/* Banner – boxes like the red “không đủ số dư” box and blue info bubble */
+.fs-banner { display: flex; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid transparent; }
+.fs-banner__title { font: 700 17px/24px var(--font-sans); margin: 0 0 2px; color: var(--ink); }
+.fs-banner__text { font: 400 16px/23px var(--font-sans); margin: 0; color: var(--ink); }
+.fs-banner--danger { background: var(--danger-tint); border-color: var(--danger-line); }
+.fs-banner--danger > svg { color: var(--danger); }
+.fs-banner--warning { background: var(--promo-tint); }
+.fs-banner--warning > svg { color: var(--promo-strong); }
+.fs-banner--info, .fs-banner--family { background: var(--info-tint); border: 2px solid var(--info-line); }
+.fs-banner--info > svg, .fs-banner--family > svg { color: var(--info); }
+.fs-ainote { display: flex; gap: var(--space-2); align-items: center; font: 500 15px/21px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.fs-ainote svg { color: var(--brand); }
+
+/* Evidence chip */
+.fs-chip { display: inline-flex; align-items: center; gap: var(--space-1); padding: 4px 10px; border-radius: var(--radius-sm); font: 500 15px/21px var(--font-sans); }
+/* Corner ribbon tag – like “Nhà xe tuyển chọn | Ưu đãi giờ chót” */
+.fs-ribbon { display: inline-flex; align-items: stretch; border-radius: var(--radius-sm) var(--radius-pill) var(--radius-pill) 0; overflow: hidden; font: 700 15px/30px var(--font-sans); }
+.fs-ribbon b { background: var(--promo-strong); color: var(--on-brand); padding: 0 10px; border-radius: var(--radius-sm) var(--radius-pill) var(--radius-pill) 0; }
+.fs-ribbon span { background: var(--promo-tint); color: var(--promo-strong); padding: 0 12px 0 8px; font-weight: 500; }
+
+/* Avatar */
+.fs-av { width: 40px; height: 40px; border-radius: var(--radius-pill); display: grid; place-items: center; font: 700 15px/1 var(--font-sans); flex: none; }
+.fs-av--me { background: var(--brand-tint); color: var(--brand-strong); }
+.fs-av--fam { background: var(--info-tint); color: var(--info); }
+
+/* Task item */
+.fs-task { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-4); background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
+.fs-task__check { width: 28px; height: 28px; border-radius: var(--radius-sm); border: 2px solid var(--line-strong); flex: none; display: grid; place-items: center; margin-top: 2px; }
+.fs-task--done .fs-task__check { background: var(--success); border-color: var(--success); color: var(--on-brand); }
+.fs-task--done .fs-task__title { color: var(--ink-muted); text-decoration: line-through; }
+.fs-task__num { font: 600 15px/21px var(--font-sans); color: var(--ink-muted); }
+.fs-task__title { font: 700 18px/26px var(--font-sans); margin: 0; }
+.fs-task__meta { display: flex; gap: var(--space-2); align-items: center; flex-wrap: wrap; margin-top: var(--space-2); font: 500 15px/21px var(--font-sans); color: var(--ink-muted); }
+
+/* Event card */
+.fs-event { display: grid; grid-template-columns: 60px 1fr; gap: var(--space-3); }
+.fs-event__time { font: 700 16px/22px var(--font-sans); color: var(--ink); text-align: right; padding-top: var(--space-4); }
+.fs-event__card { background: var(--surface-card); border-radius: var(--radius-lg); padding: var(--space-3) var(--space-4); box-shadow: var(--shadow-card); }
+.fs-event__ch { display: inline-flex; gap: var(--space-1); align-items: center; font: 600 15px/21px var(--font-sans); color: var(--ink-muted); }
+.fs-event__text { font: 400 17px/25px var(--font-sans); margin: var(--space-1) 0 var(--space-2); }
+
+/* Share scope */
+.fs-scope { display: flex; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-lg); border: 2px solid var(--line); background: var(--surface-card); }
+.fs-scope__radio { width: 26px; height: 26px; border-radius: var(--radius-pill); border: 2px solid var(--line-strong); flex: none; margin-top: 2px; }
+.fs-scope--on { border-color: var(--brand); background: var(--brand-tint); }
+.fs-scope--on .fs-scope__radio { border: 8px solid var(--brand); background: var(--surface-card); }
+.fs-scope__title { font: 700 18px/26px var(--font-sans); margin: 0 0 var(--space-1); }
+.fs-scope__list { margin: 0; padding-left: 20px; font: 400 16px/24px var(--font-sans); color: var(--ink-muted); }
+
+/* State block */
+.fs-state { text-align: center; padding: var(--space-6) var(--space-4); border-radius: var(--radius-lg); background: var(--surface-card); box-shadow: var(--shadow-card); }
+.fs-state__icon { width: 72px; height: 72px; border-radius: var(--radius-pill); display: grid; place-items: center; margin: 0 auto var(--space-4); }
+.fs-state__title { font: 700 20px/28px var(--font-sans); margin: 0 0 var(--space-2); }
+.fs-state__text { font: 400 17px/25px var(--font-sans); color: var(--ink-muted); margin: 0 0 var(--space-5); }
+.fs-progress { height: 8px; border-radius: var(--radius-pill); background: #ececf2; overflow: hidden; }
+.fs-progress > i { display: block; height: 100%; background: var(--brand); border-radius: var(--radius-pill); }
+
+/* Text input */
+.fs-field label { display: block; font: 700 17px/24px var(--font-sans); margin-bottom: var(--space-2); }
+.fs-input { width: 100%; min-height: 140px; padding: var(--space-3) var(--space-4); border: 1.5px solid var(--line-strong); border-radius: var(--radius-md); font: 400 18px/27px var(--font-sans); color: var(--ink); background: var(--surface-card); resize: none; }
+.fs-input:focus { outline: none; border-color: var(--brand); box-shadow: var(--focus-ring); }
+.fs-input--error { border-color: var(--danger); background: var(--danger-tint); }
+.fs-field__hint { font: 500 15px/21px var(--font-sans); color: var(--ink-muted); margin-top: var(--space-2); }
+.fs-field__err { display: flex; gap: var(--space-1); align-items: center; font: 600 15px/21px var(--font-sans); color: var(--danger); margin-top: var(--space-2); }
+
+/* Screen scaffolding – MoMo template */
+.scr { width: 390px; display: flex; flex-direction: column; background: var(--surface-bg); font-family: var(--font-sans); color: var(--ink); overflow: hidden; position: relative; }
+.hdr { background: linear-gradient(180deg, var(--header-top) 0%, var(--header-bottom) 72%, var(--surface-bg) 100%); padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 12px; }
+.hdr__row { display: flex; align-items: center; gap: 10px; }
+.hbtn { width: 48px; height: 48px; border-radius: var(--radius-pill); background: var(--surface-card); border: 1px solid #ececf1; display: grid; place-items: center; color: var(--ink); text-decoration: none; flex: none; }
+.hdr__t { flex: 1; min-width: 0; }
+.hdr__title { margin: 0; font: 700 20px/26px var(--font-sans); color: var(--ink); }
+.hdr__sub { margin: 2px 0 0; font: 400 15px/20px var(--font-sans); color: var(--ink); }
+.capsule { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px; border-radius: var(--radius-pill); background: var(--surface-card); border: 1px solid #ececf1; color: var(--ink); flex: none; }
+.capsule i { width: 1px; height: 22px; background: #d9d9e0; }
+.steps { display: flex; gap: 6px; }
+.steps > i { height: 6px; flex: 1; border-radius: var(--radius-pill); background: rgba(255,255,255,0.9); }
+.steps > i.on { background: var(--brand); }
+.body { flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 4px 16px 24px; }
+.sec { font: 700 22px/30px var(--font-sans); margin: 8px 0 0; color: var(--ink); }
+.h-title { font: 700 24px/32px var(--font-sans); margin: 0; }
+.h-sub { font: 400 17px/25px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.h-sec { font: 700 19px/26px var(--font-sans); margin: 0; }
+.card { background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 16px; display: flex; flex-direction: column; gap: 12px; position: relative; }
+.card--tag { padding-top: 40px; }
+.card--hl { border: 2px solid var(--promo); }
+.card > .fs-ribbon { position: absolute; top: -2px; left: -2px; }
+.actions { background: var(--surface-card); box-shadow: var(--shadow-bar); padding: 12px 16px 28px; display: flex; flex-direction: column; gap: 10px; }
+.actions--row { flex-direction: row; }
+.actions--row > * { flex: 1; padding: 0 8px; }
+.txt { font: 400 17px/25px var(--font-sans); margin: 0; }
+.txt-lg { font: 400 18px/27px var(--font-sans); margin: 0; }
+.muted { color: var(--ink-muted); }
+.cap { font: 500 15px/21px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.kv { display: flex; justify-content: space-between; gap: 12px; font: 400 17px/25px var(--font-sans); padding: 8px 0; }
+.kv > span:first-child { color: var(--ink-muted); flex: none; }
+.kv b { font-weight: 600; text-align: right; }
+.sig { display: flex; gap: 12px; align-items: flex-start; }
+.sig__n { width: 32px; height: 32px; border-radius: var(--radius-pill); display: grid; place-items: center; font: 700 15px/1 var(--font-sans); flex: none; }
+.thumb { width: 104px; height: 128px; border-radius: var(--radius-md); background: var(--surface-card); box-shadow: var(--shadow-card); display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 8px; font: 600 14px/18px var(--font-sans); color: var(--ink); position: relative; }
+.thumb svg { color: var(--brand); }
+.opt { display: flex; align-items: center; gap: 12px; min-height: var(--tap-min); padding: 12px 16px; border: 1.5px solid var(--line); border-radius: var(--radius-md); background: var(--surface-card); font: 600 17px/24px var(--font-sans); color: var(--ink); text-align: left; width: 100%; }
+.opt svg:first-child { color: var(--brand); }
+.opt--on { border: 2px solid var(--brand); background: var(--brand-tint); }
+.opt--on svg:last-child { color: var(--brand); }
+.lane { border-radius: var(--radius-md); padding: 10px; display: flex; flex-direction: column; gap: 6px; background: var(--surface-sunken); }
+.lane__h { display: flex; align-items: center; gap: 6px; font: 700 15px/21px var(--font-sans); }
+.lane__h svg { color: var(--brand); }
+.node { background: var(--surface-card); border-radius: var(--radius-sm); padding: 6px 8px; font: 500 14px/20px var(--font-sans); }
+.link { color: var(--brand-strong); font: 600 17px/24px var(--font-sans); text-decoration: none; }
+.tabs { display: flex; background: var(--surface-card); border-bottom: 1px solid var(--line); margin: 0 -16px; }
+.tabs > span { flex: 1; text-align: center; padding: 14px 0 12px; font: 600 17px/24px var(--font-sans); color: var(--ink); border-bottom: 3px solid transparent; }
+.tabs > span.on { color: var(--brand-strong); border-color: var(--brand); }
+.chiprow { display: flex; gap: 8px; }
+.fchip { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 16px; border-radius: var(--radius-pill); background: #e9e9ee; font: 500 16px/22px var(--font-sans); color: var(--ink); white-space: nowrap; }
+.fchip--on { background: var(--surface-card); border: 2px solid var(--brand-line); color: var(--brand-strong); }
+.live { display: inline-flex; align-items: center; gap: 6px; font: 600 15px/21px var(--font-sans); color: var(--success); }
+.live::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--success-dot); box-shadow: 0 0 0 4px #c9f2d6; }
+.bubble { background: var(--info-tint); border: 2px solid var(--info-line); border-radius: var(--radius-lg); padding: 14px 16px; }
+.amt { font: 700 32px/40px var(--font-sans); margin: 0; }
+.row > .fs-btn { font-size: 16px; line-height: 20px; padding: 0 10px; min-height: 48px; white-space: nowrap; }
+
+
+
+details.more>summary{list-style:none;cursor:pointer;color:#c4177a;font:600 16px/22px var(--font-sans);display:inline-flex;gap:4px;align-items:center;min-height:32px}
+details.more>summary::-webkit-details-marker{display:none}
+details.more[open]>summary .lbl::after{content:" – Thu gọn"}
+
+
+
+.map{position:relative;width:340px;height:656px}
+.mlane{position:absolute;top:0;bottom:0;width:98px;border-radius:14px;background:#f5f5f8}
+.mlh{position:absolute;top:8px;width:98px;display:flex;flex-direction:column;align-items:center;gap:2px;font:700 14px/18px var(--font-sans);color:#303030}
+.mlh svg{color:#eb2f96}
+.mnode{position:absolute;background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(48,48,48,.12);padding:8px;display:flex;flex-direction:column;gap:4px;font:600 15px/19px var(--font-sans);color:#303030;animation:pop .45s ease-out both}
+.mnode small{font:500 13px/16px var(--font-sans);color:#666666}
+.mnode--danger{border:2px solid #d0103a;background:#fff1f1}
+.mnode--miss{background:transparent;box-shadow:none;border:2px dashed #c43a00;color:#c43a00;align-items:center;justify-content:center;text-align:center}
+.phone{display:inline-block;align-self:flex-start;padding:2px 6px;border-radius:8px;border:2px solid #eb2f96;background:#fde8f3;color:#c4177a;font:700 14px/18px var(--font-sans)}
+.mtime{position:absolute;left:-4px;width:40px;text-align:right;font:700 14px/18px var(--font-sans);color:#303030;animation:pop .45s ease-out both}
+.mlinks{position:absolute;left:0;top:0;width:340px;height:656px;overflow:visible}
+.mlinks path{fill:none;stroke-width:2.5;stroke-linecap:round}
+.flow{stroke:#8c8c96;stroke-dasharray:240;stroke-dashoffset:240;animation:draw .6s ease-out forwards}
+.same{stroke:#eb2f96;stroke-dasharray:5 5;opacity:0;animation:fade .4s ease-out forwards}
+.samelbl{position:absolute;padding:3px 8px;border-radius:999px;background:#eb2f96;color:#fff;font:700 13px/18px var(--font-sans);animation:pop .4s ease-out both;white-space:nowrap}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+
+
+html,body{margin:0;background:#ece9f1;font-family:"SF Pro Text",-apple-system,Inter,sans-serif}
+.wrap{display:flex;gap:32px;justify-content:center;align-items:flex-start;padding:24px}
+.side{width:260px;position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.side h1{font:700 16px/22px Inter,sans-serif;color:#c4177a;margin:0 0 4px}.side p{font:400 12px/17px Inter,sans-serif;color:#666;margin:0 0 12px}
+.side a{display:block;padding:7px 10px;border-radius:10px;font:500 13px/18px Inter,sans-serif;color:#303030;text-decoration:none}
+.side a:hover{background:#fde8f3}.side a.on{background:#eb2f96;color:#fff}
+.phone-frame{width:390px;height:844px;border-radius:44px;border:10px solid #1d1d1f;overflow:hidden;background:#f2f1f7;box-shadow:0 20px 60px rgba(0,0,0,.18);flex:none}
+.viewport{width:390px;height:844px;overflow-y:auto;overflow-x:hidden;scrollbar-width:none}.viewport::-webkit-scrollbar{display:none}
+.screen{display:none}.screen.on{display:block;animation:sin .25s ease-out}
+.screen .scr{min-height:844px}
+@keyframes sin{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+@media(max-width:760px){.side{display:none}.wrap{padding:0}.phone-frame{border:0;border-radius:0;width:100vw;height:100vh;box-shadow:none}.viewport{width:100vw;height:100vh}.screen .fs.scr{width:100%!important}}
+</style></head><body>
+<div class="wrap"><nav class="side"><h1>Family Shield</h1><p>Prototype bấm được · bản thiết kế ý tưởng dự thi, không phải giao diện chính thức của MoMo.</p><a href="#Main">Trang chủ Chống lừa đảo</a><a href="#A1-Ke">A1 · Kể tình huống</a><a href="#A2-PhanTich">A2 · AI đang phân tích</a><a href="#A3-KetQua">A3 · Kết quả phân tích</a><a href="#A4-ChoNguoiThan">A4 · Chờ người thân phản hồi</a><a href="#A5-KiemChung">A5 · Tự kiểm chứng</a><a href="#B1-KhanCap">B1 · Việc cần làm ngay</a><a href="#B2-HoiNhanh">B2 · Hỏi nhanh</a><a href="#B3-BangChung">B3 · Thu bằng chứng</a><a href="#B4-BanDo">B4 · Bản đồ sự cố</a><a href="#B5-DieuPhoi">B5 · Bảng điều phối</a><a href="#B6-HoSo">B6 · Xuất hồ sơ</a><a href="#C1-MoiNguoiThan">C1 · Mời người thân</a><a href="#C2-QuanLyChiaSe">C2 · Trạng thái lời mời và quyền chia sẻ</a><a href="#C3-NguoiThan-NghiNgo">C3 · Người thân: xem giúp trước khi chuyển</a><a href="#C4-NguoiThan-DieuPhoi">C4 · Người thân: cùng xử lý sự cố</a><a href="#D1-YeuCauMoi">D1 · Kiểm tra tin “lấy lại tiền”</a><a href="#E1-LoiTaiAnh">E1 · Lỗi tải ảnh</a><a href="#E2-ThieuChungCu">E2 · Thiếu chứng cứ, chưa đủ thông tin</a><a href="#E3-AILoi">E3 · AI không phản hồi</a><a href="#E4-LinkHetHan">E4 · Link hết hạn hoặc đã thu hồi</a></nav>
+<div class="phone-frame"><div class="viewport" id="vp"><section class="screen" id="Main" data-title="Trang chủ Chống lừa đảo">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#Main" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Chống lừa đảo</p><p class="hdr__sub">Family Shield</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div class="card" style="gap:10px">
+    <div class="row" style="justify-content:space-between;flex-wrap:nowrap"><span class="row" style="gap:8px;flex-wrap:nowrap"><span style="color:#eb2f96"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><b style="font:700 18px/24px var(--font-sans)"><span style="color:#c4177a">Family Shield</span> 24/7</b></span><span class="live" style="white-space:nowrap">Đang bật</span></div>
+    <div style="display:flex;justify-content:center"><div style="width:240px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hai người trong gia đình đứng hai bên tấm khiên" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="92" r="66" fill="#fde8f3"/><circle cx="196" cy="40" r="14" fill="#fbcee2"/><circle cx="36" cy="120" r="10" fill="#eaf3fe"/><g transform="translate(70 84) scale(1.05)"><path d="M-30 62 C-30 34 -16 26 0 26 C16 26 30 34 30 62 Z" fill="#0062cc"/><circle cx="0" cy="0" r="20" fill="#f6c9a7"/><path d="M-21 -2 C-22 -18 -10 -24 0 -24 C10 -24 22 -18 21 -2 C16 -12 8 -14 0 -14 C-8 -14 -16 -12 -21 -2 Z" fill="#d7d7df"/><circle cx="-7" cy="2" r="5.5" fill="none" stroke="#303030" stroke-width="2"/><circle cx="7" cy="2" r="5.5" fill="none" stroke="#303030" stroke-width="2"/><path d="M-1.5 2 H1.5" stroke="#303030" stroke-width="2"/><path d="M-6 10 Q0 14 6 10" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"/></g><g transform="translate(172 84) scale(1.05)"><path d="M-30 62 C-30 34 -16 26 0 26 C16 26 30 34 30 62 Z" fill="#f85420"/><circle cx="0" cy="0" r="20" fill="#f6c9a7"/><path d="M-21 0 C-23 -20 -8 -25 2 -24 C14 -23 23 -14 21 2 C17 -8 6 -12 -4 -10 C-12 -9 -18 -5 -21 0 Z" fill="#3a3a46"/><circle cx="-7" cy="2" r="2.2" fill="#303030"/><circle cx="7" cy="2" r="2.2" fill="#303030"/><path d="M-6 10 Q0 14 6 10" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"/></g><g transform="translate(121 92) scale(1.05)"><path d="M0 -34 L28 -24 V0 C28 20 14 32 0 38 C-14 32 -28 20 -28 0 V-24 Z" fill="#eb2f96"/><path d="M-11 1 L-3 9 L12 -7" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M98 140 Q120 152 144 140" fill="none" stroke="#eb2f96" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"/><path transform="translate(206 74) scale(0.9)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#eb2f96"/><path transform="translate(30 46) scale(0.7)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#0062cc"/><path transform="translate(152 24) scale(0.6)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#f85420"/></svg></div></div>
+    <p class="txt muted" style="text-align:center">Cùng gia đình xử lý khi nghi bị lừa. Không cần cài thêm ứng dụng.</p>
+  </div>
+  <p class="sec">Bạn đang gặp chuyện gì?</p>
+  <div class="card card--tag card--hl" style="padding:0;padding-top:30px">
+    <span class="fs-ribbon"><b>Gấp nhất</b><span>Làm ngay trong 30 phút đầu</span></span>
+    <a class="fs-tile" style="box-shadow:none" href="#B1-KhanCap"><span class="fs-tile__icon tone-primary"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span><span class="fs-tile__title" style="display:block">Tôi đã chuyển tiền</span><span class="fs-tile__desc" style="display:block">Hoặc đã đưa mã OTP, cài ứng dụng lạ</span></span><span class="fs-tile__chev"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a>
+  </div>
+  <a class="fs-tile" href="#A1-Ke"><span class="fs-tile__icon tone-family"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><span><span class="fs-tile__title" style="display:block">Tôi đang nghi ngờ</span><span class="fs-tile__desc" style="display:block">Có người yêu cầu chuyển tiền. Nhờ người thân xem giúp trước</span></span><span class="fs-tile__chev"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a>
+  <a class="fs-tile" href="#D1-YeuCauMoi"><span class="fs-tile__icon tone-warning"><svg class="ic lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><span class="fs-tile__title" style="display:block">Có người hứa lấy lại tiền</span><span class="fs-tile__desc" style="display:block">Kiểm tra tin nhắn, cuộc gọi mới trước khi làm theo</span></span><span class="fs-tile__chev"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span></a>
+  <p class="sec">Người thân của bạn</p>
+  <div class="card">
+    <div class="row" style="flex-wrap:nowrap;gap:12px"><span class="fs-av fs-av--fam">L</span><div style="flex:1"><p class="txt"><b>Nguyễn Thị Lan</b></p><p class="cap">Con gái · Được báo khi bạn cần</p></div><a class="link" href="#C2-QuanLyChiaSe">Quản lý</a></div>
+    <a class="fs-btn fs-btn--family fs-btn--block" href="#C1-MoiNguoiThan"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>Thêm người thân</a>
+  </div>
+  <div class="bubble"><p class="txt"><b>An toàn khi dùng Family Shield</b></p><p class="txt muted">Không ai được yêu cầu bạn đọc mã OTP, mật khẩu hay mã PIN – kể cả người tự xưng công an.</p></div>
+  <p class="fs-ainote"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Bạn đang dùng trợ lý AI · AI có thể sai, hãy kiểm tra lại</p>
+  <p class="cap" style="text-align:center">Bản thiết kế ý tưởng dự thi – không phải giao diện chính thức của MoMo.</p>
+</div>
+
+</div>
+</section><section class="screen" id="A1-Ke" data-title="A1 · Kể tình huống">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#Main" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Tôi đang nghi ngờ</p><p class="hdr__sub">Bước 1/3</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i></i><i></i></div></div>
+<div class="body">
+  <div class="fs-banner fs-banner--danger"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/></svg><div><p class="fs-banner__title">Khoan chuyển tiền đã</p><p class="fs-banner__text">Kể cho chúng tôi trước. Chỉ mất khoảng 1 phút.</p></div></div>
+  <div class="fs-field"><label for="k1">Ai đang yêu cầu bác làm gì?</label>
+  <textarea id="k1" class="fs-input" style="min-height:132px">Có người gọi tự xưng công an, bảo tôi liên quan vụ án, phải chuyển 20 triệu để chứng minh tài sản.</textarea>
+  <div class="fs-field__hint">Kể tự nhiên như nói với con cháu. Không cần đúng thứ tự.</div></div>
+  <div class="row"><button class="fs-btn fs-btn--secondary" style="flex:1"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><path d="M12 18v4"/></svg>Nói thay vì gõ</button><button class="fs-btn fs-btn--secondary" style="flex:1"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>Chụp tin nhắn</button></div>
+  <p class="cap" style="margin:0">Hoặc chạm nhanh:</p>
+  <div class="row"><span class="fs-chip tone-unknown">Tự xưng công an</span><span class="fs-chip tone-unknown">Người quen nhờ chuyển gấp</span><span class="fs-chip tone-unknown">Trúng thưởng, nhận quà</span></div>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--primary fs-btn--block" href="#A2-PhanTich"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Phân tích giúp tôi</a></div>
+
+</div>
+</section><section class="screen" id="A2-PhanTich" data-title="A2 · AI đang phân tích">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#A1-Ke" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Tôi đang nghi ngờ</p><p class="hdr__sub">Bước 2/3</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i class="on"></i><i></i></div></div>
+<div class="body" style="justify-content:center">
+  <div class="fs-state"><div style="display:flex;justify-content:center"><div style="width:200px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Điện thoại được kính lúp kiểm tra" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="84" r="64" fill="#fde8f3"/><g transform="translate(112 84) rotate(0)"><rect x="-35.0" y="-60.0" width="70" height="120" rx="12" fill="#303030"/><rect x="-30.0" y="-52.0" width="60" height="104" rx="7" fill="#ffffff"/></g><rect x="86" y="48" width="52" height="8" rx="4" fill="#e6e6ec"/><rect x="86" y="64" width="36" height="8" rx="4" fill="#e6e6ec"/><rect x="86" y="80" width="52" height="8" rx="4" fill="#e6e6ec"/><rect x="86" y="96" width="36" height="8" rx="4" fill="#e6e6ec"/><rect x="86" y="112" width="52" height="8" rx="4" fill="#e6e6ec"/><rect x="86" y="64" width="36" height="8" rx="4" fill="#fbcee2"/><circle cx="150" cy="104" r="22" fill="#ffffff" stroke="#eb2f96" stroke-width="7"/><path d="M166 120 L184 138" stroke="#eb2f96" stroke-width="9" stroke-linecap="round"/><path d="M141 104 l6 6 l11 -12" fill="none" stroke="#1a7f37" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path transform="translate(186 46) scale(0.9)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#eb2f96"/><path transform="translate(56 56) scale(0.7)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#0062cc"/><path transform="translate(64 130) scale(0.5)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#f85420"/></svg></div></div>
+    <p class="fs-state__title">Đang đọc lời kể của bác</p>
+    <p class="fs-state__text">Khoảng 10 giây. Trong lúc chờ, bác đừng trả lời người lạ và đừng bấm vào đường link nào.</p>
+    <div class="fs-progress"><i style="width:65%"></i></div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px;text-align:left">
+      <p class="txt"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Đã che số điện thoại, số tài khoản</p>
+      <p class="txt"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Đang so với các thủ đoạn đã được cảnh báo</p>
+      <p class="txt muted"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/></svg> Soạn thẻ tóm tắt cho người thân</p>
+    </div>
+  </div>
+</div>
+<div class="actions"><button class="fs-btn fs-btn--primary fs-btn--block" disabled>Đang phân tích…</button><a class="fs-btn fs-btn--ghost fs-btn--block" href="#A3-KetQua">Xem kết quả mẫu</a></div>
+
+</div>
+</section><section class="screen" id="A3-KetQua" data-title="A3 · Kết quả phân tích">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#A2-PhanTich" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Kết quả</p><p class="hdr__sub">Bước 3/3</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+<div class="body">
+  <h1 class="h-title">Bác chưa nên chuyển tiền</h1>
+  <div class="card card--tag">
+    <span class="fs-ribbon"><b>Rất đáng ngờ</b><span>Giống mạo danh công an</span></span>
+    <div><div class="kv"><span>Ai yêu cầu</span><b>Người xưng công an</b></div>
+    <div class="kv"><span>Yêu cầu</span><b>Chuyển 20.000.000đ</b></div>
+    <div class="kv"><span>Qua</span><b>Cuộc gọi, Zalo</b></div></div>
+  </div>
+  <div class="card" style="gap:12px">
+    <p class="h-sec">3 dấu hiệu cần kiểm tra</p>
+    <div class="sig"><span class="sig__n tone-danger">1</span><p class="txt"><b>Công an không đòi chuyển tiền qua điện thoại</b></p></div>
+    <div class="sig"><span class="sig__n tone-danger">2</span><p class="txt"><b>Dọa vụ án, ép làm ngay</b></p></div>
+    <div class="sig"><span class="sig__n tone-danger">3</span><p class="txt"><b>Chuyển vào tài khoản lạ</b></p></div>
+    <details class="more"><summary><span class="lbl">Xem căn cứ</span><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><p class="cap">1 · Từ lời kể: “bảo tôi phải chuyển 20 triệu”</p><p class="cap">2 · Từ lời kể: “liên quan vụ án”</p><p class="cap">3 · Thủ đoạn phổ biến nhất năm 2025 theo NCA</p><p class="cap">Chưa rõ: số người gọi là của ai; có giấy triệu tập không.</p><span class="fs-chip tone-info"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>AI tổng hợp · không phải kết luận</span></div></details>
+  </div>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--primary fs-btn--block" href="#A4-ChoNguoiThan"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>Nhờ người thân xem giúp</a><a class="fs-btn fs-btn--secondary fs-btn--block" href="#A5-KiemChung">Tôi tự kiểm chứng</a></div>
+
+</div>
+</section><section class="screen" id="A4-ChoNguoiThan" data-title="A4 · Chờ người thân phản hồi">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#A3-KetQua" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Nhờ người thân xem giúp</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div class="card" style="align-items:center;text-align:center;gap:10px;padding:16px">
+    <div style="display:flex;justify-content:center"><div style="width:200px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hai điện thoại nhắn tin cho nhau" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="88" r="64" fill="#eaf3fe"/><g transform="translate(72 92) rotate(-8)"><rect x="-29.0" y="-50.0" width="58" height="100" rx="12" fill="#303030"/><rect x="-24.0" y="-42.0" width="48" height="84" rx="7" fill="#ffffff"/></g><g transform="translate(168 92) rotate(8)"><rect x="-29.0" y="-50.0" width="58" height="100" rx="12" fill="#303030"/><rect x="-24.0" y="-42.0" width="48" height="84" rx="7" fill="#ffffff"/></g><rect x="54" y="62" width="34" height="10" rx="5" fill="#fbcee2" transform="rotate(-8 72 92)"/><rect x="54" y="78" width="26" height="10" rx="5" fill="#e6e6ec" transform="rotate(-8 72 92)"/><rect x="152" y="68" width="34" height="10" rx="5" fill="#9cc4f5" transform="rotate(8 168 92)"/><path d="M98 34 H142 a10 10 0 0 1 10 10 V60 a10 10 0 0 1 -10 10 H126 L118 80 L116 70 H98 a10 10 0 0 1 -10 -10 V44 a10 10 0 0 1 10 -10 Z" fill="#eb2f96"/><path d="M120 62 C108 54 104 48 110 43 C114 40 118 42 120 46 C122 42 126 40 130 43 C136 48 132 54 120 62 Z" fill="#ffffff"/><path transform="translate(200 36) scale(0.8)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#0062cc"/><path transform="translate(40 40) scale(0.6)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#eb2f96"/></svg></div></div>
+    <p class="h-sec">Đã gửi cho chị Lan</p>
+    <div class="row" style="justify-content:center"><span class="fs-badge tone-success"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Đã gửi 9:14</span><span class="fs-badge tone-family"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Đã xem 9:15</span></div>
+  </div>
+  <div class="fs-banner fs-banner--family"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg><div><p class="fs-banner__title">Chị Lan trả lời: “Mẹ dừng lại”</p><p class="fs-banner__text">“Con gọi mẹ ngay. Mẹ đừng chuyển, đừng nghe máy số lạ nữa nhé.”</p></div></div>
+  <div class="card">
+    <p class="txt"><b>Trong lúc chờ, bác nên:</b></p>
+    <p class="txt">1. Cúp máy, không gọi lại số vừa gọi.</p>
+    <p class="txt">2. Gọi cho con theo số đã lưu trong danh bạ.</p>
+    <p class="txt">3. Không đọc mã OTP cho bất kỳ ai.</p>
+  </div>
+  <p class="cap">Chị Lan chỉ xem được thẻ tóm tắt, không xem ảnh và không có quyền gì với tài khoản của bác. Link hết hạn sau 24 giờ.</p>
+</div>
+<div class="actions"><button class="fs-btn fs-btn--primary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Gọi chị Lan</button><a class="fs-btn fs-btn--secondary fs-btn--block" href="#B1-KhanCap">Tôi đã lỡ chuyển tiền</a><a class="fs-btn fs-btn--ghost fs-btn--block" href="#C2-QuanLyChiaSe">Ngừng chia sẻ</a></div>
+
+</div>
+</section><section class="screen" id="A5-KiemChung" data-title="A5 · Tự kiểm chứng">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#A3-KetQua" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Tự kiểm chứng</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <h1 class="h-title">Kiểm chứng bằng kênh của bác</h1>
+  <p class="h-sub">Không dùng số, link hay ứng dụng mà người lạ đưa.</p>
+  <div class="fs-task"><span class="fs-task__check"></span><div><p class="fs-task__title">Gọi công an phường/xã nơi bác ở</p><p class="cap">Hỏi xem có ai đang làm việc với bác không</p></div></div>
+  <div class="fs-task"><span class="fs-task__check"></span><div><p class="fs-task__title">Gọi số in sau thẻ ngân hàng</p><p class="cap">Không gọi số trong tin nhắn</p></div></div>
+  <div class="fs-task"><span class="fs-task__check"></span><div><p class="fs-task__title">Hỏi “mật khẩu gia đình”</p><p class="cap">Nếu người gọi xưng là con cháu</p></div></div>
+  <div class="fs-task"><span class="fs-task__check"></span><div><p class="fs-task__title">Chờ giấy mời bằng văn bản</p><p class="cap">Cơ quan chức năng gửi giấy, không làm việc qua mạng</p></div></div>
+  <p class="cap">Đánh dấu xong cả 4 việc không có nghĩa là yêu cầu này an toàn.</p>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--primary fs-btn--block" href="#Main">Lưu và về trang chủ</a><a class="fs-btn fs-btn--family fs-btn--block" href="#A4-ChoNguoiThan"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>Nhờ người thân xem giúp</a></div>
+
+</div>
+</section><section class="screen" id="B1-KhanCap" data-title="B1 · Việc cần làm ngay">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#Main" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Tôi đã chuyển tiền</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div class="row"><span class="fs-badge tone-warning"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Đã trôi 12 phút</span></div>
+  <h1 class="h-title">Bình tĩnh. Làm 4 việc này trước.</h1>
+  <div class="fs-task" style="border:2px solid #f85420;padding-top:44px;position:relative"><span class="fs-ribbon" style="position:absolute;top:-2px;left:-2px"><b>Việc 1 · Gấp nhất</b><span>Làm ngay</span></span><span class="sig__n tone-primary">1</span><div style="flex:1"><p class="fs-task__title">Gọi ngay ngân hàng bác đã dùng để chuyển tiền</p><p class="cap">Đề nghị khóa tài khoản, khóa ngân hàng điện tử và tra soát giao dịch.</p><a class="fs-btn fs-btn--primary fs-btn--block" style="margin-top:10px" href="#B2-HoiNhanh"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Chọn ngân hàng để gọi</a></div></div>
+  <div class="fs-task"><span class="sig__n tone-unknown">2</span><div><p class="fs-task__title">Ngừng liên lạc với người kia</p><p class="cap">Không trả lời, không chuyển thêm dù họ hứa hoàn tiền.</p></div></div>
+  <div class="fs-task"><span class="sig__n tone-unknown">3</span><div><p class="fs-task__title">Đổi mật khẩu, kiểm tra thiết bị đăng nhập</p><p class="cap">Nhất là khi đã đưa mã OTP hoặc cài ứng dụng lạ.</p></div></div>
+  <div class="fs-task"><span class="sig__n tone-unknown">4</span><div><p class="fs-task__title">Không xóa tin nhắn, cuộc gọi</p><p class="cap">Đó là bằng chứng để trình báo.</p></div></div>
+  <p class="cap">Theo khuyến cáo của cơ quan chức năng · Hiển thị ngay, không cần AI</p>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--secondary fs-btn--block" href="#B2-HoiNhanh">Tiếp tục lập hồ sơ</a><a class="fs-btn fs-btn--family fs-btn--block" href="#C1-MoiNguoiThan"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>Mời người thân cùng xử lý</a></div>
+
+</div>
+</section><section class="screen" id="B2-HoiNhanh" data-title="B2 · Hỏi nhanh">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B1-KhanCap" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Lập hồ sơ</p><p class="hdr__sub">Bước 1/4</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i></i><i></i><i></i></div></div>
+<div class="body">
+  <h1 class="h-title">Bác đã làm điều nào?</h1>
+  <p class="h-sub">Chọn tất cả các ý đúng. Câu trả lời giúp sắp xếp lại việc cần làm.</p>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <button class="opt opt--on"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M2 10 12 3l10 7z"/></svg><span style="flex:1">Chuyển tiền qua ứng dụng ngân hàng</span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+    <button class="opt"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M2 10 12 3l10 7z"/></svg><span style="flex:1">Chuyển qua ví điện tử</span></button>
+    <button class="opt"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span style="flex:1">Đọc mã OTP cho người khác</span></button>
+    <button class="opt"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg><span style="flex:1">Cài ứng dụng do người lạ gửi</span></button>
+    <button class="opt"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7"/><path d="M15 7h2a5 5 0 0 1 4 8"/><path d="M8 12h4"/><path d="m2 2 20 20"/></svg><span style="flex:1">Bấm vào đường link lạ</span></button>
+  </div>
+  <div class="fs-field"><label for="m1">Khoảng bao nhiêu tiền?</label><input id="m1" class="fs-input" style="min-height:56px" value="20.000.000đ"></div>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--primary fs-btn--block" href="#B3-BangChung">Tiếp tục</a></div>
+
+</div>
+</section><section class="screen" id="B3-BangChung" data-title="B3 · Thu bằng chứng">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B2-HoiNhanh" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Lập hồ sơ</p><p class="hdr__sub">Bước 2/4</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+<div class="body">
+  <h1 class="h-title">Gửi ảnh chụp màn hình</h1>
+  <p class="h-sub">Tin nhắn, biên lai chuyển khoản, số đã gọi tới. Chúng tôi tự che số tài khoản và số điện thoại.</p>
+  <div class="row" style="gap:10px">
+    <div class="thumb"><span style="position:absolute;top:6px;right:6px"><span class="fs-chip tone-success"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Zalo 9:12</div>
+    <div class="thumb"><span style="position:absolute;top:6px;right:6px"><span class="fs-chip tone-success"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M2 10 12 3l10 7z"/></svg>Biên lai</div>
+    <div class="thumb"><span style="position:absolute;top:6px;right:6px"><span class="fs-chip tone-success"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Cuộc gọi</div>
+  </div>
+  <div class="row"><button class="fs-btn fs-btn--secondary" style="flex:1"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>Thêm ảnh</button><button class="fs-btn fs-btn--secondary" style="flex:1"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><path d="M12 18v4"/></svg>Kể bằng lời</button></div>
+  <div class="fs-field"><label for="s1">Kể thêm (không bắt buộc)</label><textarea id="s1" class="fs-input" style="min-height:96px">Sáng nay có người gọi xưng công an, sau đó nhắn Zalo. Tôi chuyển 20 triệu lúc 9 rưỡi.</textarea></div>
+  <span class="fs-chip tone-unknown"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Ảnh chỉ dùng cho hồ sơ của bác, tự xóa sau 7 ngày</span>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--primary fs-btn--block" href="#B4-BanDo"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>Lập bản đồ sự cố</a></div>
+
+</div>
+</section><section class="screen" id="B4-BanDo" data-title="B4 · Bản đồ sự cố">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B3-BangChung" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Bản đồ sự cố</p><p class="hdr__sub">Bước 3/4</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+<div class="body">
+  <div class="tabs"><span class="on">Bản đồ</span><span>Dòng thời gian</span><span>Bằng chứng</span></div>
+  <div class="row" style="justify-content:space-between;flex-wrap:nowrap">
+    <span class="row" style="gap:6px"><span class="fs-badge tone-unknown"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>3 kênh</span><span class="fs-badge tone-danger"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>20.000.000đ</span></span>
+    <button class="fs-btn fs-btn--ghost" style="min-height:44px;padding:0 4px" onclick="replay(this)"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Phát lại</button>
+  </div>
+  <div class="card" style="padding:12px 9px">
+    <div class="anim">
+      <div class="map">
+<div class="mlane" style="left:40px"></div><div class="mlane" style="left:141px"></div><div class="mlane" style="left:242px"></div>
+<span class="mlh" style="left:40px"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Cuộc gọi</span>
+<span class="mlh" style="left:141px"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Zalo</span>
+<span class="mlh" style="left:242px"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M2 10 12 3l10 7z"/></svg>Ngân hàng</span>
+<svg class="mlinks" viewBox="0 0 340 656" aria-hidden="true">
+  <path class="flow" style="animation-delay:1.3s" d="M190 288 C190 318 291 308 291 338"/>
+  <path class="flow" style="animation-delay:2.0s" d="M291 420 C291 452 190 442 190 470"/>
+  <path class="same" style="animation-delay:.6s" d="M89 148 C89 175 190 165 190 196"/>
+</svg>
+<span class="mtime" style="top:84px;animation-delay:0.2s">8:55</span><div class="mnode " style="left:40px;top:72px;width:98px;height:76px;animation-delay:0.2s">Xưng công an<span class="phone">09xx·812</span></div>
+<span class="mtime" style="top:208px;animation-delay:0.9s">9:12</span><div class="mnode " style="left:141px;top:196px;width:98px;height:92px;animation-delay:0.9s">Gửi “lệnh tạm giữ”<span class="phone">09xx·812</span><small>Từ ảnh 1</small></div>
+<span class="mtime" style="top:350px;animation-delay:1.6s">9:30</span><div class="mnode " style="left:242px;top:338px;width:98px;height:82px;animation-delay:1.6s">Chuyển 20 triệu<small>→ ••• 4821</small><small>Từ biên lai</small></div>
+<span class="mtime" style="top:482px;animation-delay:2.3s">10:05</span><div class="mnode mnode--danger" style="left:141px;top:470px;width:98px;height:88px;animation-delay:2.3s">Đòi “phí hồ sơ”<small style="color:#d0103a">Rất đáng ngờ</small></div>
+<span class="samelbl" style="left:104px;top:160px;animation-delay:.8s">Cùng 1 số</span>
+<div class="mnode mnode--miss" style="left:40px;top:574px;width:98px;height:72px;animation-delay:3.5s"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg><span style="font-size:13px;line-height:16px">Lịch sử cuộc gọi</span></div>
+<div class="mnode mnode--miss" style="left:141px;top:574px;width:98px;height:72px;animation-delay:3.7s"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg><span style="font-size:13px;line-height:16px">Trang cá nhân Zalo</span></div>
+</div>
+    </div>
+  </div>
+  <div class="row" style="gap:12px">
+    <span class="cap" style="display:inline-flex;gap:6px;align-items:center"><i style="width:16px;height:16px;border-radius:4px;border:2px solid #eb2f96;background:#fde8f3;display:inline-block"></i>Trùng khớp</span>
+    <span class="cap" style="display:inline-flex;gap:6px;align-items:center"><i style="width:16px;height:16px;border-radius:4px;border:2px dashed #c43a00;display:inline-block"></i>Còn thiếu</span>
+    <span class="cap" style="display:inline-flex;gap:6px;align-items:center"><i style="width:16px;height:16px;border-radius:4px;border:2px solid #d0103a;background:#fff1f1;display:inline-block"></i>Rất đáng ngờ</span>
+  </div>
+  <p class="fs-ainote"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>AI ghép từ 3 ảnh và lời kể · chưa xác minh độc lập</p>
+</div>
+<div class="actions actions--row"><a class="fs-btn fs-btn--secondary fs-btn--block" href="#E2-ThieuChungCu">Thêm ảnh</a><a class="fs-btn fs-btn--primary fs-btn--block" href="#B5-DieuPhoi">Việc cần làm</a></div>
+
+</div>
+</section><section class="screen" id="B5-DieuPhoi" data-title="B5 · Bảng điều phối">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B4-BanDo" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Việc cần làm</p><p class="hdr__sub">Bước 4/4</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+<div class="body">
+  <div class="row" style="justify-content:space-between;flex-wrap:nowrap"><h1 class="h-title">Xong 2/6 việc</h1><span class="row" style="gap:4px"><span class="fs-av fs-av--me">H</span><span class="fs-av fs-av--fam">L</span></span></div>
+  <div class="fs-progress"><i style="width:33%"></i></div>
+  <div class="chiprow"><span class="fchip fchip--on">Tất cả 6</span><span class="fchip">Của tôi 3</span><span class="fchip">Của Lan 2</span></div>
+  <div class="fs-banner fs-banner--danger"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><div><p class="fs-banner__title">Đừng chuyển thêm tiền, dù ai hứa hoàn lại</p></div></div>
+  <div class="fs-task"><span class="fs-task__check"></span><div style="flex:1"><span class="fs-task__num">Việc 1 · Gấp nhất</span><p class="fs-task__title">Gọi ngân hàng: khóa và tra soát</p><div class="fs-task__meta"><span class="fs-av fs-av--fam" style="width:32px;height:32px">L</span>Chị Lan · <span class="fs-badge tone-warning"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Đang làm</span></div><details class="more"><summary><span class="lbl">Kịch bản gọi</span><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><p class="cap">“Mẹ tôi bị lừa chuyển 20.000.000đ lúc 9:30 tới tài khoản ••• 4821. Tôi đề nghị khóa ngân hàng điện tử và tra soát giao dịch.”</p></div></details></div></div>
+  <div class="fs-task fs-task--done"><span class="fs-task__check"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><div style="flex:1"><span class="fs-task__num">Việc 2</span><p class="fs-task__title">Ngừng trả lời người lạ</p><div class="fs-task__meta"><span class="fs-av fs-av--me" style="width:32px;height:32px">H</span>Bác Hoa · Xong 9:41</div></div></div>
+  <div class="fs-task fs-task--done"><span class="fs-task__check"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><div style="flex:1"><span class="fs-task__num">Việc 3</span><p class="fs-task__title">Đổi mật khẩu ngân hàng</p><div class="fs-task__meta"><span class="fs-av fs-av--me" style="width:32px;height:32px">H</span>Bác Hoa · Xong 9:45</div></div></div>
+  <div class="fs-task"><span class="fs-task__check"></span><div style="flex:1"><span class="fs-task__num">Việc 4</span><p class="fs-task__title">Chụp trang cá nhân Zalo kẻ gian</p><div class="fs-task__meta"><span class="fs-av fs-av--me" style="width:32px;height:32px">H</span>Bác Hoa · Chưa làm</div></div></div>
+  <details class="more"><summary><span class="lbl">Xem thêm 2 việc</span><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><div class="fs-task"><span class="fs-task__check"></span><div style="flex:1"><span class="fs-task__num">Việc 5</span><p class="fs-task__title">Chuẩn bị hồ sơ trình báo</p><div class="fs-task__meta"><span class="fs-av fs-av--fam" style="width:32px;height:32px">L</span>Chị Lan · Chưa làm</div></div></div><div class="fs-task"><span class="fs-task__check"></span><div style="flex:1"><span class="fs-task__num">Việc 6</span><p class="fs-task__title">Báo tài khoản Zalo giả mạo</p><div class="fs-task__meta"><span class="fs-av fs-av--fam" style="width:32px;height:32px">?</span>Chưa giao · Chưa làm</div></div></div></div></details>
+</div>
+<div class="actions actions--row"><a class="fs-btn fs-btn--secondary fs-btn--block" href="#C1-MoiNguoiThan">Mời thêm</a><a class="fs-btn fs-btn--primary fs-btn--block" href="#B6-HoSo">Xuất hồ sơ</a></div>
+
+</div>
+</section><section class="screen" id="B6-HoSo" data-title="B6 · Xuất hồ sơ">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B5-DieuPhoi" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Xuất hồ sơ</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div style="display:flex;justify-content:center"><div style="width:170px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bộ hồ sơ có dấu khiên" style="display:block;max-width:100%;height:auto"><circle cx="118" cy="88" r="62" fill="#fde8f3"/><rect x="80" y="30" width="88" height="112" rx="10" fill="#ffffff" stroke="#e6e6ec" stroke-width="2" transform="rotate(-6 124 86)"/><rect x="72" y="28" width="88" height="112" rx="10" fill="#ffffff" stroke="#b8b8c2" stroke-width="2"/><rect x="72" y="28" width="88" height="24" rx="10" fill="#eb2f96"/><rect x="72" y="42" width="88" height="10" fill="#eb2f96"/><rect x="84" y="64" width="64" height="7" rx="3.5" fill="#e6e6ec"/><rect x="84" y="78" width="50" height="7" rx="3.5" fill="#e6e6ec"/><rect x="84" y="92" width="36" height="7" rx="3.5" fill="#e6e6ec"/><rect x="84" y="106" width="64" height="7" rx="3.5" fill="#e6e6ec"/><rect x="84" y="120" width="50" height="7" rx="3.5" fill="#e6e6ec"/><g transform="translate(166 118) scale(0.72)"><path d="M0 -34 L28 -24 V0 C28 20 14 32 0 38 C-14 32 -28 20 -28 0 V-24 Z" fill="#0062cc"/><path d="M-11 1 L-3 9 L12 -7" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g><path transform="translate(190 52) scale(0.8)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#eb2f96"/><path transform="translate(52 120) scale(0.6)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#f85420"/></svg></div></div>
+  <h1 class="h-title">Chọn mẫu hồ sơ</h1>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <button class="opt opt--on"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg><span style="flex:1">Trình báo cơ quan công an</span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+    <button class="opt"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M19 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M2 10 12 3l10 7z"/></svg><span style="flex:1">Đề nghị ngân hàng tra soát</span></button>
+    <button class="opt"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span style="flex:1">Yêu cầu bồi thường bảo hiểm</span></button>
+  </div>
+  <div class="card">
+    <p class="cap" style="margin:0;color:#0062cc"><b>Thông tin do người dùng cung cấp · AI hỗ trợ tổng hợp · Chưa xác minh độc lập</b></p>
+    <p class="cap" style="margin:0">Số tiền bị chuyển</p><p class="amt">20.000.000đ</p>
+    <p class="txt"><b>Tóm tắt vụ việc</b></p>
+    <p class="txt muted">Ngày 26/11, bà Nguyễn Thị Hoa nhận cuộc gọi từ số 09xx ••• 812 xưng là cán bộ công an, sau đó nhắn qua Zalo…</p>
+    <div class="kv"><span class="muted">Số tiền</span><b>20.000.000đ</b></div>
+    <div class="kv"><span class="muted">Tài khoản nhận</span><b>••• 4821</b></div>
+    <div class="kv"><span class="muted">Bằng chứng</span><b>3 ảnh · 4 mốc</b></div>
+    <div class="row"><span class="fs-chip tone-success"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Đủ 9/10 trường</span><span class="fs-chip tone-warning"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/></svg>Thiếu: giờ cuộc gọi</span></div>
+  </div>
+  <p class="cap">Đây không phải đơn trình báo chính thức. Bác hoặc người thân mang bản này tới cơ quan công an nơi cư trú.</p>
+</div>
+<div class="actions"><button class="fs-btn fs-btn--primary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Tải hồ sơ PDF</button><a class="fs-btn fs-btn--family fs-btn--block" href="#C2-QuanLyChiaSe"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>Gửi cho chị Lan</a></div>
+
+</div>
+</section><section class="screen" id="C1-MoiNguoiThan" data-title="C1 · Mời người thân">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B5-DieuPhoi" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Mời người thân</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div style="display:flex;justify-content:center"><div style="width:170px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phong bì thư mời với hai người" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="90" r="62" fill="#eaf3fe"/><rect x="64" y="62" width="112" height="72" rx="10" fill="#ffffff" stroke="#9cc4f5" stroke-width="3"/><path d="M66 66 L120 104 L174 66" fill="none" stroke="#9cc4f5" stroke-width="3" stroke-linejoin="round"/><circle cx="92" cy="40" r="16" fill="#0062cc"/><circle cx="92" cy="36" r="6" fill="#ffffff"/><path d="M82 50 a10 9 0 0 1 20 0" fill="#ffffff"/><circle cx="148" cy="40" r="16" fill="#eb2f96"/><circle cx="148" cy="36" r="6" fill="#ffffff"/><path d="M138 50 a10 9 0 0 1 20 0" fill="#ffffff"/><path d="M120 46 C112 40 110 36 113 33 C116 31 119 32 120 35 C121 32 124 31 127 33 C130 36 128 40 120 46 Z" fill="#eb2f96"/><path transform="translate(196 112) scale(0.7)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#eb2f96"/><path transform="translate(46 100) scale(0.6)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#0062cc"/></svg></div></div>
+  <h1 class="h-title">Ai sẽ cùng bác xử lý?</h1>
+  <div class="fs-field"><label for="p1">Số điện thoại người thân</label><input id="p1" class="fs-input" style="min-height:56px" value="09xx ••• 356 (Lan – con gái)"></div>
+  <p class="h-sec" style="font-size:19px">Chia sẻ những gì?</p>
+  <div class="fs-scope fs-scope--on"><span class="fs-scope__radio"></span><div><p class="fs-scope__title">Tóm tắt</p><ul class="fs-scope__list"><li>Chuyện gì đã xảy ra, bao nhiêu tiền</li><li>Việc cần giúp</li><li>Không gửi ảnh, không hiện đủ số tài khoản</li></ul></div></div>
+  <div class="fs-scope"><span class="fs-scope__radio"></span><div><p class="fs-scope__title">Đầy đủ</p><ul class="fs-scope__list"><li>Thêm bản đồ sự cố và ảnh bằng chứng</li><li>Cho phép tải hồ sơ PDF</li></ul></div></div>
+  <div class="card" style="background:#eaf3fe;border-color:#eaf3fe;box-shadow:none">
+    <p class="txt"><b>Người thân sẽ không thể:</b></p>
+    <p class="txt">Chuyển tiền · Xem tài khoản của bác · Sửa hay xóa bằng chứng</p>
+  </div>
+  <p class="cap">Link hết hạn sau 24 giờ. Bác có thể thu hồi bất kỳ lúc nào.</p>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--family fs-btn--block" href="#C2-QuanLyChiaSe"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>Gửi lời mời qua tin nhắn</a><a class="fs-btn fs-btn--ghost fs-btn--block" href="#B5-DieuPhoi">Để sau</a></div>
+
+</div>
+</section><section class="screen" id="C2-QuanLyChiaSe" data-title="C2 · Trạng thái lời mời và quyền chia sẻ">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B5-DieuPhoi" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Đang chia sẻ</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <h1 class="h-title">Ai đang xem hồ sơ</h1>
+  <div class="card">
+    <div class="row" style="flex-wrap:nowrap"><span class="fs-av fs-av--fam">L</span><div style="flex:1"><p class="txt"><b>Chị Lan</b> · con gái</p><p class="cap">Đầy đủ · hết hạn 9:20 ngày 27/11</p></div><span class="fs-badge tone-success"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Đã nhận</span></div>
+    <div class="row"><span class="fs-chip tone-family"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>Đang làm việc 1</span><span class="fs-chip tone-unknown"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Xem lần cuối 9:52</span></div>
+    <div class="row"><button class="fs-btn fs-btn--secondary" style="flex:1">Đổi thành Tóm tắt</button><button class="fs-btn fs-btn--danger" style="flex:1"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7"/><path d="M15 7h2a5 5 0 0 1 4 8"/><path d="M8 12h4"/><path d="m2 2 20 20"/></svg>Thu hồi</button></div>
+  </div>
+  <div class="card">
+    <div class="row" style="flex-wrap:nowrap"><span class="fs-av fs-av--fam">T</span><div style="flex:1"><p class="txt"><b>Anh Tuấn</b> · con trai</p><p class="cap">Tóm tắt · gửi lúc 9:50</p></div><span class="fs-badge tone-info"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Chờ mở</span></div>
+    <div class="row"><button class="fs-btn fs-btn--secondary" style="flex:1"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>Gửi lại</button><button class="fs-btn fs-btn--danger" style="flex:1"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Hủy lời mời</button></div>
+  </div>
+  <div class="card" style="box-shadow:none">
+    <div class="row" style="flex-wrap:nowrap"><span class="fs-av" style="background:#f0f0f4;color:#666666">M</span><div style="flex:1"><p class="txt muted"><b>Chị Mai</b></p><p class="cap">Đã thu hồi lúc 8:30</p></div><span class="fs-badge tone-unknown"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7"/><path d="M15 7h2a5 5 0 0 1 4 8"/><path d="M8 12h4"/><path d="m2 2 20 20"/></svg>Đã thu hồi</span></div>
+  </div>
+  <p class="cap">Thu hồi có hiệu lực ngay: người đó mở link sẽ thấy “không còn quyền xem”.</p>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--family fs-btn--block" href="#C1-MoiNguoiThan"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>Mời thêm người</a><a class="fs-btn fs-btn--danger fs-btn--block" href="#E4-LinkHetHan">Ngừng chia sẻ với tất cả</a></div>
+
+</div>
+</section><section class="screen" id="C3-NguoiThan-NghiNgo" data-title="C3 · Người thân: xem giúp trước khi chuyển">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><div class="hdr__t"><p class="hdr__title">Mẹ nhờ con xem giúp</p></div><span class="fs-badge tone-family"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Gửi 2 phút trước</span></div></div>
+<div class="body">
+  <div class="fs-banner fs-banner--family"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg><div><p class="fs-banner__title">Bà Hoa đang được yêu cầu chuyển tiền</p><p class="fs-banner__text">Mẹ chưa chuyển. Con hãy trả lời ngay.</p></div></div>
+  <div class="card">
+    <div class="row"><span class="fs-badge tone-danger"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Rất đáng ngờ</span></div>
+    <div><div class="kv"><span class="muted">Ai yêu cầu</span><b>Người tự xưng công an</b></div>
+    <div class="kv"><span class="muted">Yêu cầu</span><b>Chuyển 20.000.000đ</b></div>
+    <div class="kv"><span class="muted">Qua</span><b>Cuộc gọi, Zalo</b></div></div>
+    <p class="txt"><b>3 dấu hiệu:</b> làm việc qua điện thoại, dọa vụ án, đòi chuyển tiền.</p>
+    <span class="fs-chip tone-info"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>AI tổng hợp từ lời kể của mẹ · chưa xác minh</span>
+  </div>
+  <p class="h-sec" style="font-size:19px">Con trả lời mẹ</p>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <a class="fs-btn fs-btn--primary fs-btn--block" href="#A4-ChoNguoiThan"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/></svg>Mẹ dừng lại, đừng chuyển</a>
+    <button class="fs-btn fs-btn--secondary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Con gọi mẹ ngay</button>
+    <button class="fs-btn fs-btn--secondary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Con cần thêm thông tin</button>
+  </div>
+  <div class="fs-field"><label for="n1">Nhắn thêm cho mẹ (không bắt buộc)</label><textarea id="n1" class="fs-input" style="min-height:80px">Mẹ đừng nghe máy số lạ nữa nhé.</textarea></div>
+  <p class="cap">Con chỉ xem được phần mẹ chia sẻ. Con không có quyền với tài khoản của mẹ.</p>
+</div>
+
+</div>
+</section><section class="screen" id="C4-NguoiThan-DieuPhoi" data-title="C4 · Người thân: cùng xử lý sự cố">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><div class="hdr__t"><p class="hdr__title">Hồ sơ của mẹ Hoa</p><p class="hdr__sub">Mẹ chia sẻ · Đầy đủ</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div class="card" style="gap:4px"><p class="cap" style="margin:0">Mẹ đã chuyển lúc 9:30 · đã trôi 25 phút</p><p class="amt">20.000.000đ</p></div>
+  <p class="sec">Việc của con</p>
+  <div class="card card--tag card--hl">
+    <span class="fs-ribbon"><b>Việc 1 · Gấp nhất</b><span>Làm ngay</span></span>
+    <p class="fs-task__title">Gọi tổng đài ngân hàng của mẹ</p>
+    <details class="more"><summary><span class="lbl">Xem kịch bản gọi</span><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary><div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><div style="background:#f5f5f8;border-radius:12px;padding:12px"><p class="txt">“Mẹ tôi bị lừa chuyển 20.000.000đ lúc 9:30 tới tài khoản ••• 4821. Tôi đề nghị khóa ngân hàng điện tử và tra soát.”</p></div><button class="fs-btn fs-btn--ghost" style="justify-content:flex-start;padding:0"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Sao chép</button><p class="cap">Số tổng đài lấy từ danh mục đã kiểm tra ngày 26/11.</p></div></details>
+    <a class="fs-btn fs-btn--primary fs-btn--block" href="#"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Gọi tổng đài chính thức</a>
+  </div>
+  <div class="fs-task"><span class="fs-task__check"></span><div style="flex:1"><span class="fs-task__num">Việc 5</span><p class="fs-task__title">Chuẩn bị hồ sơ trình báo</p><div class="fs-task__meta"><span class="fs-av fs-av--fam">L</span>Lan (con) · Chưa làm</div></div></div>
+  <div class="fs-field"><label for="g1">Ghi chú sau khi gọi</label><textarea id="g1" class="fs-input" style="min-height:72px">Đã gọi 9:58, mã tra soát TS-2611…</textarea></div>
+</div>
+<div class="actions"><button class="fs-btn fs-btn--primary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Đánh dấu đã xong</button></div>
+
+</div>
+</section><section class="screen" id="D1-YeuCauMoi" data-title="D1 · Kiểm tra tin “lấy lại tiền”">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#Main" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Có yêu cầu mới</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div class="fs-field"><label for="d1">Dán tin nhắn hoặc kể cuộc gọi</label><textarea id="d1" class="fs-input" style="min-height:120px">VIỆN KIỂM SÁT – LIÊN KẾT NGÂN HÀNG HỖ TRỢ: Hồ sơ thu hồi của bà đã được duyệt. Vui lòng nộp phí xử lý 2.000.000đ để nhận lại 100% số tiền.</textarea></div>
+  <div class="card">
+    <div style="display:flex;justify-content:center"><div style="width:160px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tin nhắn có dấu chấm than và đồng xu bị gạch" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="88" r="62" fill="#ffeee7"/><path d="M66 44 H158 a12 12 0 0 1 12 12 V100 a12 12 0 0 1 -12 12 H100 L82 128 L84 112 H66 a12 12 0 0 1 -12 -12 V56 a12 12 0 0 1 12 -12 Z" fill="#ffffff" stroke="#b8b8c2" stroke-width="2"/><rect x="70" y="60" width="70" height="9" rx="4.5" fill="#e6e6ec"/><rect x="70" y="76" width="56" height="9" rx="4.5" fill="#e6e6ec"/><rect x="70" y="92" width="44" height="9" rx="4.5" fill="#f85420"/><circle cx="172" cy="48" r="20" fill="#f85420"/><rect x="169" y="36" width="6" height="16" rx="3" fill="#ffffff"/><circle cx="172" cy="58" r="3.5" fill="#ffffff"/><circle cx="176" cy="116" r="16" fill="#ffc94d"/><path d="M164 128 L188 104" stroke="#f85420" stroke-width="4" stroke-linecap="round"/></svg></div></div>
+    <div class="row"><span class="fs-badge tone-danger"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Rất đáng ngờ</span><span class="cap">Khớp 4 dấu hiệu</span></div>
+    <p class="h-sec" style="font-size:19px;line-height:26px">Đây giống chiêu “lừa đảo lần hai”</p>
+    <div class="sig"><span class="sig__n tone-danger">1</span><p class="txt">Đòi <b>nộp phí trước</b> để lấy lại tiền<br><span class="cap">“nộp phí xử lý 2.000.000đ”</span></p></div>
+    <div class="sig"><span class="sig__n tone-danger">2</span><p class="txt">Hứa lấy lại <b>100%</b><br><span class="cap">“nhận lại 100% số tiền”</span></p></div>
+    <div class="sig"><span class="sig__n tone-danger">3</span><p class="txt">Mạo danh <b>cơ quan tư pháp</b> qua tin nhắn</p></div>
+    <div class="sig"><span class="sig__n tone-danger">4</span><p class="txt">Biết bác vừa bị lừa – kẻ gian nhắm vào nạn nhân</p></div>
+  </div>
+  <div class="fs-banner fs-banner--danger"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><div><p class="fs-banner__title">Đừng chuyển, đừng trả lời</p><p class="fs-banner__text">Cơ quan chức năng không thu phí để lấy lại tiền qua tin nhắn hay mạng xã hội.</p></div></div>
+  <p class="cap">Đây là các dấu hiệu cần kiểm tra, không phải kết luận. Đã thêm vào bản đồ sự cố.</p>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--family fs-btn--block" href="#C2-QuanLyChiaSe"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg>Báo cho người thân</a><a class="fs-btn fs-btn--secondary fs-btn--block" href="#B4-BanDo"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>Về bản đồ sự cố</a></div>
+
+</div>
+</section><section class="screen" id="E1-LoiTaiAnh" data-title="E1 · Lỗi tải ảnh">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B3-BangChung" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Lập hồ sơ</p><p class="hdr__sub">Bước 2/4</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+<div class="body">
+  <h1 class="h-title">Gửi ảnh chụp màn hình</h1>
+  <div class="row" style="gap:10px">
+    <div class="thumb"><span style="position:absolute;top:6px;right:6px"><span class="fs-chip tone-success"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Zalo 9:12</div>
+    <div class="thumb" style="border:2px solid #d0103a;background:#fff1f1;color:#d0103a"><span style="position:absolute;top:6px;right:6px"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>Ảnh mờ</div>
+    <div class="thumb" style="border:2px solid #d0103a;background:#fff1f1;color:#d0103a"><span style="position:absolute;top:6px;right:6px"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>Video</div>
+  </div>
+  <div class="fs-banner fs-banner--danger"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg><div><p class="fs-banner__title">Ảnh thứ 2 bị mờ, chưa đọc được</p><p class="fs-banner__text">Bác chụp lại gần hơn, đủ sáng. Hoặc gõ lại nội dung chính.</p></div></div>
+  <div class="fs-banner fs-banner--warning"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg><div><p class="fs-banner__title">Tệp thứ 3 không phải ảnh</p><p class="fs-banner__text">Chỉ nhận ảnh PNG hoặc JPG, tối đa 5 MB, tối đa 6 ảnh.</p></div></div>
+  <p class="cap">Ảnh Zalo 9:12 đã lưu. Bác không mất gì cả.</p>
+</div>
+<div class="actions"><button class="fs-btn fs-btn--primary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>Chụp lại ảnh 2</button><button class="fs-btn fs-btn--secondary fs-btn--block">Gõ nội dung thay ảnh</button><a class="fs-btn fs-btn--ghost fs-btn--block" href="#B4-BanDo">Bỏ qua, tiếp tục với 1 ảnh</a></div>
+
+</div>
+</section><section class="screen" id="E2-ThieuChungCu" data-title="E2 · Thiếu chứng cứ, chưa đủ thông tin">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B4-BanDo" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Bằng chứng còn thiếu</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div></div>
+<div class="body">
+  <div style="display:flex;justify-content:center"><div style="width:170px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Một ảnh đã có và một khung ảnh còn trống" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="88" r="62" fill="#ffeee7"/><rect x="58" y="44" width="72" height="88" rx="10" fill="#ffffff" stroke="#b8b8c2" stroke-width="2" transform="rotate(-8 94 88)"/><path d="M66 112 L84 92 L98 106 L108 96 L122 112 Z" fill="#9cc4f5" transform="rotate(-8 94 88)"/><circle cx="104" cy="66" r="7" fill="#ffc94d" transform="rotate(-8 94 88)"/><rect x="118" y="40" width="72" height="88" rx="10" fill="#ffffff" stroke="#f85420" stroke-width="3" stroke-dasharray="8 6"/><circle cx="154" cy="84" r="16" fill="#f85420"/><path d="M154 76 V92 M146 84 H162" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/></svg></div></div>
+  <div class="row"><span class="fs-badge tone-unknown"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Chưa đủ thông tin</span></div>
+  <h1 class="h-title">Thêm 2 thứ này để hồ sơ đủ hơn</h1>
+  <div class="card">
+    <div class="sig"><span class="sig__n tone-warning"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/></svg></span><div style="flex:1"><p class="txt"><b>Ảnh trang cá nhân Zalo “Cán bộ Hùng”</b></p><p class="cap">Mở Zalo → bấm vào tên người đó → chụp màn hình</p></div></div>
+    <button class="fs-btn fs-btn--secondary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>Thêm ảnh này</button>
+  </div>
+  <div class="card">
+    <div class="sig"><span class="sig__n tone-warning"><svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/></svg></span><div style="flex:1"><p class="txt"><b>Lịch sử cuộc gọi có giờ</b></p><p class="cap">Mở Điện thoại → Gần đây → chụp dòng số 09xx ••• 812</p></div></div>
+    <button class="fs-btn fs-btn--secondary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>Thêm ảnh này</button>
+  </div>
+  <div class="card" style="box-shadow:none">
+    <p class="txt"><b>Giờ chuyển tiền chưa khớp</b></p>
+    <p class="txt muted">Lời kể nói “9 rưỡi”, biên lai ghi 9:30. Bác chọn giờ đúng:</p>
+    <div class="row"><button class="fs-btn fs-btn--secondary" style="flex:1">9:30 (biên lai)</button><button class="fs-btn fs-btn--secondary" style="flex:1">Chưa rõ</button></div>
+  </div>
+  <p class="cap">Thiếu vẫn xuất được hồ sơ; các trường thiếu sẽ ghi “chưa rõ”.</p>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--primary fs-btn--block" href="#B5-DieuPhoi">Để sau, xem việc cần làm</a></div>
+
+</div>
+</section><section class="screen" id="E3-AILoi" data-title="E3 · AI không phản hồi">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><a class="hbtn" href="#B3-BangChung" aria-label="Quay lại"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><div class="hdr__t"><p class="hdr__title">Bản đồ sự cố</p><p class="hdr__sub">Bước 3/4</p></div><span class="capsule" aria-label="Hỗ trợ và Trang chủ"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><i></i><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></span></div><div class="steps"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+<div class="body">
+  <div class="fs-state"><div style="display:flex;justify-content:center"><div style="width:190px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Đám mây đang tạm nghỉ" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="90" r="62" fill="#eaf3fe"/><path d="M78 112 a24 24 0 0 1 4 -47 a32 32 0 0 1 60 -8 a26 26 0 0 1 22 55 Z" fill="#ffffff" stroke="#9cc4f5" stroke-width="3"/><rect x="108" y="78" width="9" height="24" rx="4.5" fill="#0062cc"/><rect x="124" y="78" width="9" height="24" rx="4.5" fill="#0062cc"/><circle cx="94" cy="132" r="5" fill="#9cc4f5"/><circle cx="120" cy="136" r="5" fill="#9cc4f5"/><circle cx="146" cy="132" r="5" fill="#9cc4f5"/><path transform="translate(184 44) scale(0.7)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#0062cc"/></svg></div></div>
+    <p class="fs-state__title">Trợ lý AI đang bận</p>
+    <p class="fs-state__text">Chưa ghép được bản đồ. 3 ảnh và lời kể của bác đã được lưu, không mất gì.</p>
+    <button class="fs-btn fs-btn--secondary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Thử lại</button>
+  </div>
+  <p class="h-sec">Trong lúc chờ, bác vẫn làm được:</p>
+  <div class="fs-task"><span class="sig__n tone-primary">1</span><div><p class="fs-task__title">Gọi ngân hàng để khóa và tra soát</p><p class="cap">Việc này không cần AI</p></div></div>
+  <div class="fs-task"><span class="sig__n tone-unknown">2</span><div><p class="fs-task__title">Không xóa tin nhắn, cuộc gọi</p></div></div>
+  <div class="card" style="box-shadow:none;background:#eaf3fe;border-color:#eaf3fe">
+    <p class="txt" style="color:#0062cc"><b>Đang dùng bộ dữ liệu mẫu?</b></p>
+    <p class="txt">Bác có thể xem <b>kết quả mẫu đã lưu</b>. Kết quả này được ghi rõ là mẫu.</p>
+  </div>
+</div>
+<div class="actions"><a class="fs-btn fs-btn--primary fs-btn--block" href="#B1-KhanCap"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Gọi ngân hàng ngay</a><a class="fs-btn fs-btn--ghost fs-btn--block" href="#B4-BanDo">Xem kết quả mẫu đã lưu</a></div>
+
+</div>
+</section><section class="screen" id="E4-LinkHetHan" data-title="E4 · Link hết hạn hoặc đã thu hồi">
+<div class="fs scr" style="width: 390px;">
+
+<div class="hdr"><div class="hdr__row"><div class="hdr__t"><p class="hdr__title">Family Shield</p></div></div></div>
+<div class="body" style="justify-content:center">
+  <div class="fs-state"><div style="display:flex;justify-content:center"><div style="width:190px"><svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mắt xích bị tách rời và ổ khóa" style="display:block;max-width:100%;height:auto"><circle cx="120" cy="88" r="62" fill="#f0f0f4"/><rect x="52" y="70" width="64" height="30" rx="15" fill="none" stroke="#b8b8c2" stroke-width="9" transform="rotate(-20 84 85)"/><rect x="124" y="70" width="64" height="30" rx="15" fill="none" stroke="#b8b8c2" stroke-width="9" transform="rotate(-20 156 85)"/><path d="M112 58 L106 46 M120 56 L122 42 M128 60 L138 50" stroke="#f85420" stroke-width="4" stroke-linecap="round"/><rect x="102" y="104" width="36" height="30" rx="7" fill="#eb2f96"/><path d="M110 104 V96 a10 10 0 0 1 20 0 V104" fill="none" stroke="#eb2f96" stroke-width="5"/><circle cx="120" cy="118" r="4" fill="#ffffff"/></svg></div></div>
+    <p class="fs-state__title">Bạn không còn quyền xem hồ sơ này</p>
+    <p class="fs-state__text">Link đã hết hạn hoặc người chia sẻ đã ngừng chia sẻ. Đây là cách chúng tôi bảo vệ thông tin của họ.</p>
+    <button class="fs-btn fs-btn--secondary fs-btn--block"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Gọi cho người đã gửi</button>
+  </div>
+  <p class="cap" style="text-align:center">Nếu người thân vẫn cần bạn giúp, họ có thể gửi lời mời mới.</p>
+</div>
+
+</div>
+</section></div></div></div>
+<script>
+function show(){var id=(location.hash||'#Main').slice(1);var el=document.getElementById(id);if(!el||!el.classList.contains('screen')){id='Main';el=document.getElementById(id);}
+document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('on',s===el)});
+document.querySelectorAll('.side a').forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id)});
+document.getElementById('vp').scrollTop=0;document.title=el.dataset.title+' · Family Shield';
+el.querySelectorAll('.anim').forEach(function(n){var c=n.cloneNode(true);n.replaceWith(c)});}
+function replay(b){var sc=b.closest('.screen');sc.querySelectorAll('.anim').forEach(function(n){var c=n.cloneNode(true);n.replaceWith(c)})}
+window.addEventListener('hashchange',show);show();
+</script></body></html>
