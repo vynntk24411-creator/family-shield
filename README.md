@@ -29,19 +29,10 @@ Nguyên tắc: AI hỗ trợ, **con người quyết định**. Không có nút 
 family-shield/
 ├── index.html              ← Prototype giao diện 21 màn (bấm được) – Vercel tự đăng
 ├── docs/
-│   ├── API_CONTRACT.md     ← Hợp đồng API giữa frontend và backend (ĐỌC TRƯỚC KHI CODE)
-│   └── Family_Shield_BA_SRS_v2.docx  ← Tài liệu nghiệp vụ & yêu cầu (BA/SRS v2.1)
+│   └── API_CONTRACT.md     ← Hợp đồng API giữa frontend và backend (ĐỌC TRƯỚC KHI CODE)
 ├── api/                    ← Backend (đang làm)
 └── README.md
 ```
-
-## Ai làm gì
-
-| Phần | Người phụ trách | Thư mục |
-|---|---|---|
-| BA / thiết kế UI | Vy | `docs/`, `index.html` |
-| Backend + AI | _(điền tên)_ | `api/` |
-| Frontend (nối API) | _(điền tên)_ | sau chuyển sang Next.js |
 
 ---
 
